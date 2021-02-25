@@ -7,7 +7,8 @@ namespace ADcontent
     {
         static void Main()
         {
-            string originalPath = @"\\REP-APP\SFTP_ROOT\ADcontent\ItemDetails*.csv";
+            string[] dir = Directory.GetFiles(@"\\REP-APP\SFTP_ROOT\ftpuser\ADcontent\", "*.csv");
+            string originalPath = dir[0];
             string destinationPath = @"\\S2013-DBS\ADcontent\";
             string currentLine;
             string headers;
@@ -57,6 +58,8 @@ namespace ADcontent
             {
                 Console.WriteLine(e);
             }
+            streamReader.Dispose();
+            File.Delete(originalPath);
         }
     }
 }
